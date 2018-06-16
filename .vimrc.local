@@ -1,0 +1,38 @@
+"*****************************************************************************
+" Customed config made by Hugo Kempfer
+" https://github.com/HugoKempfer
+"*****************************************************************************
+
+"Put here your cusqtom settings
+
+colorscheme gruvbox
+
+"" File explorer key bindings
+map <C-e> :NERDTreeToggle<CR>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+map <C-K> :bprev<CR>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+map <C-p> :ctrlp_map<CR>
+
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+set colorcolumn=80
+highlight ColorColumn guibg=grey
+set autoindent
+set noexpandtab
+set tabstop=8
+set shiftwidth=8
+let g:indentLine_setColors = 0
+set conceallevel=1
+let g:indentLine_conceallevel=1
+set list lcs=tab:\|\ 
+"
+""SuperTab settings
+let g:SuperTabMappingTabLiteral="<c-space>"
+let g:solarized_termcolors=256
+
+"" VIM Ctags
+let g:autoTagsFile=".tags"
+map <C-t> <C-]>
+map <C-b> <C-t>
