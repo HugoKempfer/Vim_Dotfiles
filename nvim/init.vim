@@ -62,7 +62,7 @@ set backspace=indent,eol,start
 set tabstop=4
 set noexpandtab
 "" Map leader to ,
-let mapleader=','
+let mapleader=","
 
 "" Enable hidden buffers
 set hidden
@@ -269,6 +269,7 @@ autocmd Filetype html setlocal ts=8 sw=8 noexpandtab
 
 " javascript
 let g:javascript_enable_domhtmlcss = 1
+autocmd Filetype js setlocal tabstop=2 shiftwidth=2 expandtab
 
 " vim-javascript
 augroup vimrc-javascript
@@ -307,6 +308,9 @@ let g:airline#extensions#virtualenv#enabled = 1
 let g:polyglot_disabled = ['python']
 let python_highlight_all = 1
 
+" Vim ranger
+let g:NERDTreeHijackNetrw = 0
+let g:ranger_replace_netrw = 1
 
 "*****************************************************************************
 " Override config
