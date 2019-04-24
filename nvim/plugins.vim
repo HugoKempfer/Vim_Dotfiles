@@ -1,10 +1,7 @@
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/unite.vim'
 Plug 'morhetz/gruvbox'
-"Plug 'w0rp/ale'
-Plug 'maximbaz/lightline-ale'
 Plug 'majutsushi/tagbar'
-Plug 'vim-scripts/Conque-GDB'
 Plug 'kien/ctrlp.vim'
 Plug 'mhinz/vim-startify'
 Plug 'scrooloose/nerdtree'
@@ -21,35 +18,27 @@ Plug 'sheerun/vim-polyglot'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'itchyny/lightline.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'kylef/apiblueprint.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'fabi1cazenave/suckless.vim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 Plug 'junegunn/fzf'
-Plug 'racer-rust/vim-racer'
-Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
 Plug 'arakashic/chromatica.nvim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
-
-
-
-" enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" IMPORTANT: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-
-" NOTE: you need to install completion sources to get completions. Check
-" our wiki page for a list of sources: https://github.com/ncm2/ncm2/wiki
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-
+Plug 'neovimhaskell/haskell-vim'
+Plug 'shinchu/lightline-gruvbox.vim'
+"Plug 'ncm2/ncm2-ultisnips'
+Plug 'justinmk/vim-sneak'
+Plug 'airblade/vim-gitgutter'
+Plug 'ftilde/vim-ugdb'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'kylef/apiblueprint.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
 
 if isdirectory('/usr/local/opt/fzf')
 		Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'

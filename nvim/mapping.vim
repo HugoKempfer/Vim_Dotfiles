@@ -124,9 +124,10 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rls'],
     \ 'javascript': ['node', 'lib/language-server-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
 	\ 'c': ['ccls', '--log-file=/tmp/cc.log'],
+	\ 'dart': ['dart_language_server'],
 	\ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
+	\ 'haskell': ['hie-8.6.3', '--lsp']
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
@@ -134,3 +135,27 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR><Paste>
+
+"TERMINAL MODE
+"exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+"Launch terminal
+nnoremap <silent> <leader>tm :terminal<CR>
+
+" COC snippets
+"
+noremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? coc#rpc#request('doKeymap', ['snippets-expand-jump','']) :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
+
+vmap <leader>F  <Plug>(coc-format-selected)
+nmap <leader>F  <Plug>(coc-format-selected)

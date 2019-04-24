@@ -1,6 +1,8 @@
 # Vim dotfiles
 
-Hi! I'm sharing my personnal Vim config. I firstly generated it using Vim boostrap, and I customed some plugins/key bidings/colorsheme.
+This is my personnal (n)vim config, feel free to override it!
+I only update the neovim one.
+
 
 # Screenshots
 ![ C

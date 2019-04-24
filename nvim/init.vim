@@ -84,6 +84,8 @@ if exists('$SHELL')
 else
     set shell=/bin/zsh
 endif
+"numbers
+set relativenumber
 
 "*****************************************************************************
 "" Visual Settings
@@ -261,6 +263,13 @@ endif
 autocmd BufNewFile,BufRead *.h set filetype=c
 autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal tabstop=8 shiftwidth=8 noexpandtab
+
+" NASM
+autocmd BufNewFile,BufRead *.asm set filetype=nasm
+autocmd FileType asm setlocal tabstop=8 shiftwidth=8 noexpandtab
+
+" Haskell
+autocmd FileType hs setlocal tabstop=4 shiftwidth=4 expandtab
 
 " html
 " for html files, 2 spaces
