@@ -37,8 +37,8 @@ endif
 " Required:
 call plug#begin(expand('~/.local/share/nvim/site/autoload/plugged'))
 
-if filereadable(expand("$XDG_CONFIG_HOME/nvim/plugins.vim"))
-  source $XDG_CONFIG_HOME/nvim/plugins.vim
+if filereadable(expand("/home/hugo/.config/nvim/plugins.vim"))
+  source /home/hugo/.config/nvim/plugins.vim
 endif
 
 call plug#end()
@@ -251,8 +251,8 @@ set autoread
 "" Mappings
 "*****************************************************************************
 
-if filereadable(expand("$XDG_CONFIG_HOME/nvim/mapping.vim"))
-  source $XDG_CONFIG_HOME/nvim/mapping.vim
+if filereadable(expand("/home/hugo/.config/nvim/mapping.vim"))
+  source /home/hugo/.config/nvim/mapping.vim
 endif
 
 "*****************************************************************************
@@ -261,8 +261,15 @@ endif
 
 " c(pp)
 autocmd BufNewFile,BufRead *.h set filetype=c
+autocmd BufNewFile,BufRead *.tpp set filetype=cpp
 autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType cpp setlocal tabstop=8 shiftwidth=8 noexpandtab
+
+" ApiB
+autocmd FileType apiblueprint setlocal tabstop=4 shiftwidth=4 expandtab
+
+" Dart
+autocmd FileType dart setlocal tabstop=2 shiftwidth=2 expandtab
 
 " NASM
 autocmd BufNewFile,BufRead *.asm set filetype=nasm
@@ -326,8 +333,8 @@ let g:ranger_replace_netrw = 1
 "*****************************************************************************
 
 "" Include user's local vim config
-if filereadable(expand("$XDG_CONFIG_HOME/nvim/override.vim"))
-  source $XDG_CONFIG_HOME/nvim/override.vim
+if filereadable(expand("/home/hugo/.config/nvim/override.vim"))
+  source /home/hugo/.config/nvim/override.vim
 endif
 "*****************************************************************************
 "" Convenience variables

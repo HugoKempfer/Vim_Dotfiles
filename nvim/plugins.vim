@@ -1,3 +1,5 @@
+Plug 'ron-rs/ron.vim'
+Plug 'dpelle/vim-Grammalecte'
 Plug 'Shougo/denite.nvim'
 Plug 'Shougo/unite.vim'
 Plug 'morhetz/gruvbox'
@@ -21,10 +23,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'fabi1cazenave/suckless.vim'
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
 Plug 'junegunn/fzf'
 Plug 'roxma/nvim-yarp'
 Plug 'arakashic/chromatica.nvim'
@@ -32,7 +30,6 @@ Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'neovimhaskell/haskell-vim'
 Plug 'shinchu/lightline-gruvbox.vim'
-"Plug 'ncm2/ncm2-ultisnips'
 Plug 'justinmk/vim-sneak'
 Plug 'airblade/vim-gitgutter'
 Plug 'ftilde/vim-ugdb'
