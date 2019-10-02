@@ -1,8 +1,6 @@
-# Vim dotfiles
+# NVim dotfiles
 
-This is my personnal (n)vim config, feel free to override it!
-I only update the neovim one.
-
+This is my personnal neovim config, feel free to override it!
 
 # Screenshots
 ![ C
@@ -15,40 +13,60 @@ I mostly work with a few languages and I adapted my config to work with :
  - C
  - C++
  - Rust
+ - Dart
+ - Typescript
 
  I also plan to add support for others, so be on the lookout!
 
 ## Add your custom config
 
-The main config file includes the .vim.local config. If you need to add your own config, use this file.
-
+You should'nt edit directly the config files. Instead you can create a file at `~/.config/nvim/user_custom.vim`, so your personnal modifications won't be overwritten in future updates.
 
 ## Dependancies
 
-* Ranger
-* Grammalecte
+* nvim >= 3.8
+* python3
+* pynvim: `pip install pynvim --user`
+* nodejs
+* yarn
+* git
+* curl
+
+Optionals:
+* ranger
+* grammalecte
 * rls
 * cquery
-* nodejs
+* dart_language_server
+
+## Install intructions
+
+First make sure that you have all the necessary dependancies.
+Then clone this repo and move and the files in the `nvim` directory at `~/.config/nvim/`.
+
+In future releases I expect to create an install script.
 
 ## Controls and custom mappings
 
-All the default controls of vim are unmodified.
-
-I only addded some leader based commands and key strokes.
+All the default controls of vim are unmodified except for the s/S substitue keys.
 
 ### Editor Layout and navigation
 
+* `Leader + .` Set the working directory at the current buffer
+
 Layout:
-* `Leader + v`split vertically
-* `Leader + h`split horizontally
+* `Leader + v` split vertically
+* `Leader + h` split horizontally
 
 Navigation:
-* ``T `` open a new tab
+* ``T or GT `` open a new tab
 * `Shift + Tab` go to next tab
 * `Ctrl + pageup or pagedown` navigate between tabs
 
 * `Leader + c` close current buffer
+
+* `s + two first characters of a word` jump to a word downward cursor
+* `S + two first characters of a word` jump to a word upside cursor
 
 The editor rely on a "tiling manager" like capacities :
 
@@ -72,9 +90,10 @@ All the LSP support comes from Intellisense (COC)
 
 ### Filesystem navigation
 
-* `Ctrl + p`open file fuzzy finder
-* `F3 or Ctrl + e`open filesystem tree
-* `Leader + f`open ranger file finder (needs ranger as dependancy)
+* `Ctrl + p` open file fuzzy finder
+* `F3 or Ctrl + e` open filesystem tree
+* `Leader + f` open ranger file finder (needs ranger as dependancy)
+* `Leader + e` open fzf fuzzy finder
 
 ### Git integration
 
@@ -92,7 +111,14 @@ All the LSP support comes from Intellisense (COC)
 * `<` indent selection on the left
 * `>` indent selection on the right
 
-### Gramalecte integration
+### Other integrations
+
+Grammalecte (french grammar corrector)
 
 * `Leader + gc` grammalecte check
 * `Leader + gcc` grammalecte clear
+
+Terminal and Shell
+
+* `Leader + t + m` open terminal in current buffer
+* `Leader + s + h` open vim shell in current buffer
