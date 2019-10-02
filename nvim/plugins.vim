@@ -1,41 +1,58 @@
+"*****************************************************************************
+"" Languages specific
+"*****************************************************************************
+Plug 'kylef/apiblueprint.vim'
 Plug 'ron-rs/ron.vim'
-Plug 'dpelle/vim-Grammalecte'
-Plug 'Shougo/denite.nvim'
-Plug 'Shougo/unite.vim'
-Plug 'morhetz/gruvbox'
-Plug 'majutsushi/tagbar'
-Plug 'kien/ctrlp.vim'
-Plug 'mhinz/vim-startify'
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-scripts/grep.vim'
-Plug 'vim-scripts/CSApprox'
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'Raimondi/delimitMate'
-Plug 'majutsushi/tagbar'
-Plug 'Yggdroot/indentLine'
 Plug 'sheerun/vim-polyglot'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'itchyny/lightline.vim'
 Plug 'rust-lang/rust.vim'
+Plug 'neovimhaskell/haskell-vim'
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-Plug 'fabi1cazenave/suckless.vim'
-Plug 'junegunn/fzf'
-Plug 'roxma/nvim-yarp'
-Plug 'arakashic/chromatica.nvim'
+
+"*****************************************************************************
+"" Navigation / Buffers
+"*****************************************************************************
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'vim-scripts/grep.vim'
+Plug 'kien/ctrlp.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'justinmk/vim-sneak'
+Plug 'majutsushi/tagbar'
+Plug 'mhinz/vim-startify'
+Plug 'junegunn/fzf'
+
+"*****************************************************************************
+"" Editor and UI
+"*****************************************************************************
+Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-commentary'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'Raimondi/delimitMate'
+Plug 'Yggdroot/indentLine'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'itchyny/lightline.vim'
+Plug 'fabi1cazenave/suckless.vim'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'arakashic/chromatica.nvim'
+Plug 'shinchu/lightline-gruvbox.vim'
+
+"*****************************************************************************
+"" Integration
+"*****************************************************************************
+Plug 'dpelle/vim-Grammalecte'
+Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'ftilde/vim-ugdb'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'kylef/apiblueprint.vim'
-Plug 'junegunn/rainbow_parentheses.vim'
+
+"*****************************************************************************
+"" Too lazy to classify
+"*****************************************************************************
+Plug 'vim-scripts/CSApprox'
+Plug 'roxma/nvim-yarp'
+Plug 'Shougo/denite.nvim'
 
 if isdirectory('/usr/local/opt/fzf')
 		Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'

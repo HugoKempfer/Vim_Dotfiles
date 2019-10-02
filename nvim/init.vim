@@ -37,8 +37,8 @@ endif
 " Required:
 call plug#begin(expand('~/.local/share/nvim/site/autoload/plugged'))
 
-if filereadable(expand("/home/hugo/.config/nvim/plugins.vim"))
-  source /home/hugo/.config/nvim/plugins.vim
+if filereadable(expand("~/.config/nvim/plugins.vim"))
+  source ~/.config/nvim/plugins.vim
 endif
 
 call plug#end()
@@ -158,14 +158,6 @@ if exists("*fugitive#statusline")
   set statusline+=%{fugitive#statusline()}
 endif
 
-" vim-airline
-let g:airline_theme = 'gruvbox'
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline_skip_empty_sections = 1
-
 "*****************************************************************************
 "" Abbreviations
 "*****************************************************************************
@@ -251,8 +243,8 @@ set autoread
 "" Mappings
 "*****************************************************************************
 
-if filereadable(expand("/home/hugo/.config/nvim/mapping.vim"))
-  source /home/hugo/.config/nvim/mapping.vim
+if filereadable(expand("~/.config/nvim/mapping.vim"))
+  source ~/.config/nvim/mapping.vim
 endif
 
 "*****************************************************************************
@@ -304,20 +296,9 @@ augroup END
 
 " jedi-vim
 let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-W>"
 let g:jedi#smart_auto_mappings = 0
-
-" syntastic
-let g:syntastic_python_checkers=['python', 'flake8']
-
-" vim-airline
-let g:airline#extensions#virtualenv#enabled = 1
 
 " Syntax highlight
 " Default highlight is better than polyglot
@@ -332,10 +313,16 @@ let g:ranger_replace_netrw = 1
 " Override config
 "*****************************************************************************
 
-"" Include user's local vim config
-if filereadable(expand("/home/hugo/.config/nvim/override.vim"))
-  source /home/hugo/.config/nvim/override.vim
+if filereadable(expand("~/.config/nvim/override.vim"))
+  source ~/.config/nvim/override.vim
 endif
+
 "*****************************************************************************
-"" Convenience variables
+" User custom
 "*****************************************************************************
+
+"" Include user's local nvim config
+if filereadable(expand("~/.config/nvim/user_custom.vim"))
+  source ~/.config/nvim/user_custom.vim
+endif
+

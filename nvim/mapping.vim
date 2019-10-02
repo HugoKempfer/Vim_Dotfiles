@@ -119,23 +119,6 @@ let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabMappingTabLiteral="<c-space>"
 let g:SuperTabNoCompleteAfter=['^', ',', '\s']
 
-"" LSP server
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rls'],
-    \ 'javascript': ['node', 'lib/language-server-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-	\ 'c': ['ccls', '--log-file=/tmp/cc.log'],
-	\ 'dart': ['dart_language_server'],
-	\ 'cpp': ['ccls', '--log-file=/tmp/cc.log'],
-	\ 'haskell': ['hie-8.6.3', '--lsp']
-    \ }
-
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR><Paste>
-
 "TERMINAL MODE
 "exit terminal mode
 tnoremap <Esc> <C-\><C-n>

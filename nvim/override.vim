@@ -27,19 +27,6 @@ set conceallevel=1
 let g:indentLine_conceallevel=1
 set list lcs=tab:\|\ 
 
-""*****************************************************************************
-""" Deoplete
-""*****************************************************************************
-"" Deoplete
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"let g:deoplete#enable_at_startup = 1
-"
 "*****************************************************************************
 "" Tiling management
 "*****************************************************************************
@@ -68,12 +55,6 @@ let g:lightline = {
 						\ }
 
 "*****************************************************************************
-"" Ale config
-"*****************************************************************************
-let g:ale_c_parse_makefile = 1
-let b:ale_c_parse_makefile = 1
-
-"*****************************************************************************
 "" Haskell
 "*****************************************************************************
 "let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -84,35 +65,6 @@ let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
 let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
 let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
-"*****************************************************************************
-"" LSP override config
-"*****************************************************************************
-let g:LanguageClient_diagnosticsDisplay =  {
-						\ 1: {
-						\ "name": "Error",
-						\ "texthl": "ALEError",
-						\ "signText": ">>",
-						\ "signTexthl": "ALEErrorSign",
-						\ },
-						\ 2: {
-						\ "name": "Warning",
-						\ "texthl": "ALEWarning",
-						\ "signText": "--",
-						\ "signTexthl": "ALEWarningSign",
-						\ },
-						\ 3: {
-						\ "name": "Information",
-						\ "texthl": "ALEInfo",
-						\ "signText": "ℹ",
-						\ "signTexthl": "ALEInfoSign",
-						\ },
-						\ 4: {
-						\ "name": "Hint",
-						\ "texthl": "ALEInfo",
-						\ "signText": "➤",
-						\ "signTexthl": "ALEInfoSign",
-						\ },
-						\ }
 "*****************************************************************************
 "" COC
 ""*****************************************************************************
