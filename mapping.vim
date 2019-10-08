@@ -1,3 +1,8 @@
+" Mod switching
+"
+inoremap jk <esc>
+inoremap kj <esc>
+
 "" Split
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>

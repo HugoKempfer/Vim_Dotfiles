@@ -198,5 +198,5 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 "" Grammalecte
 "*****************************************************************************
 let g:grammalecte_cli_py='/usr/bin/grammalecte-cli.py'
-nmap <leader>gc :GrammalecteCheck<cr>
-nmap <leader>gcc :GrammalecteClear<cr>
+nmap <leader>gv :GrammalecteCheck<cr>
+nmap <leader>gvc :GrammalecteClear<cr>

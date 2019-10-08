@@ -10,19 +10,17 @@
 						}
 				},
 				"dart": {
-						"command": "dart_language_server",
-						"args": [],
-						"filetypes": ["dart"],
-						"initializationOptions": {},
-						"settings": {
-								"dart": {
-										"validation": {},
-										"completion": {}
-								}
-						}
+				"command": "dart",
+				"args": [
+						"/opt/dart-sdk/bin/snapshots/analysis_server.dart.snapshot",
+						"--lsp"
+				],
+				"filetypes": ["dart"],
+				"disableDynamicRegister": true,
+				"trace.server": "verbose"
 				}
 		},
-		"coc.preferences.formatOnSaveFiletypes": ["rust"],
+		"coc.preferences.formatOnSaveFiletypes": ["rust", "dart"],
 		"coc.preferences.colorSupport": true,
 		"coc.preferences.bracketEnterImprove": true
 
