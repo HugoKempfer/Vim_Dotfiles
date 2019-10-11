@@ -69,7 +69,6 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 "" COC
 ""*****************************************************************************
 set hidden
-let g:coc_force_debug = 1
 
 inoremap <silent><expr> <TAB>
 						\ pumvisible() ? "\<C-n>" :
