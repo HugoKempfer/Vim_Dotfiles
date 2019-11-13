@@ -255,7 +255,7 @@ endif
 autocmd BufNewFile,BufRead *.h set filetype=c
 autocmd BufNewFile,BufRead *.tpp set filetype=cpp
 autocmd FileType c setlocal tabstop=4 shiftwidth=4 expandtab
-autocmd FileType cpp setlocal tabstop=8 shiftwidth=8 noexpandtab
+autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 noexpandtab
 
 " ApiB
 autocmd FileType apiblueprint setlocal tabstop=4 shiftwidth=4 expandtab

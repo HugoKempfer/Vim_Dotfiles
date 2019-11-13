@@ -9,6 +9,8 @@ Plug 'neovimhaskell/haskell-vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'udalov/kotlin-vim'
+Plug 'janko/vim-test'
 
 "*****************************************************************************
 "" Navigation / Buffers
@@ -23,6 +25,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-startify'
 Plug 'junegunn/fzf'
+Plug 'tpope/vim-unimpaired'
 
 "*****************************************************************************
 "" Editor and UI
@@ -38,6 +41,9 @@ Plug 'fabi1cazenave/suckless.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'arakashic/chromatica.nvim'
 Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'tpope/vim-surround'
+Plug 'kshenoy/vim-signature'
+Plug 'mattn/emmet-vim'
 
 "*****************************************************************************
 "" Integration

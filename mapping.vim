@@ -37,6 +37,8 @@ noremap <Leader>e :e <C-R>=expand("%:p:h") . "/" <CR>
 "" Opens a tab edit command with the path of the currently edited file filled
 noremap <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 
+"" FUZZY FINDING AND PATTERN SEARCHING
+"
 "" fzf.vim
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.pyc,__pycache__
@@ -45,7 +47,8 @@ let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/
 " The Silver Searcher
 if executable('ag')
   let $FZF_DEFAULT_COMMAND = 'ag --hidden --ignore .git -g ""'
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
 endif
 
 " ripgrep
@@ -54,6 +57,7 @@ if executable('rg')
   set grepprg=rg\ --vimgrep
   command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>).'| tr -d "\017"', 1, <bang>0)
 endif
+
 
 cnoremap <C-P> <C-R>=expand("%:p:h") . "/" <CR>
 nnoremap <silent> <leader>b :Buffers<CR>
@@ -147,3 +151,7 @@ let g:coc_snippet_next = '<tab>'
 
 vmap <leader>F  <Plug>(coc-format-selected)
 nmap <leader>F  <Plug>(coc-format-selected)
+
+" COC terminal
+"
+nnoremap <Leader>t :CocCommand terminal.Toggle<CR>
