@@ -42,6 +42,7 @@ if filereadable(expand("~/.config/nvim/plugins.vim"))
 endif
 
 call plug#end()
+
 "*****************************************************************************
 "" Basic Setup
 "*****************************************************************************"
@@ -302,7 +303,7 @@ let g:jedi#smart_auto_mappings = 0
 
 " Syntax highlight
 " Default highlight is better than polyglot
-let g:polyglot_disabled = ['python']
+" let g:polyglot_disabled = ['python']
 let python_highlight_all = 1
 
 " Vim ranger

@@ -3,17 +3,7 @@
 "*****************************************************************************
 colorscheme gruvbox
 
-"*****************************************************************************
-"" NerdTree
-"*****************************************************************************
-map <C-e> :NERDTreeToggle<CR>
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-map <C-K> :bprev<CR>
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-map <C-p> :ctrlp_map<CR>
-set runtimepath^=~/.vim/bundle/ctrlp.vim
+let g:gruvbox_contrast_light = "hard"
 
 "*****************************************************************************
 "" Visual
@@ -159,6 +149,8 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
+nnoremap <silent> <space>l  :<C-u>CocList<CR>
+" Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 "Error signs
@@ -166,17 +158,6 @@ highlight link CocErrorSign GruvboxRed
 highlight link CocWarningSign GruvboxOrange
 highlight link CocInfoSign GruvboxBlue
 highlight link CocHintSign GruvboxCyan
-
-"*****************************************************************************
-"" Haskell
-"*****************************************************************************
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 
 "*****************************************************************************
 "" Chromatica (better syntax highlighting)
@@ -197,6 +178,6 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
 "*****************************************************************************
 "" Grammalecte
 "*****************************************************************************
-let g:grammalecte_cli_py='/usr/bin/grammalecte-cli.py'
+let g:grammalecte_cli_py='/usr/bin/grammalecte-cli'
 nmap <leader>gv :GrammalecteCheck<cr>
 nmap <leader>gvc :GrammalecteClear<cr>

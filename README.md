@@ -22,7 +22,7 @@ I mostly work with a few languages and I adapted my config to work with :
 
 You should'nt edit directly the config files. Instead you can create a file at `~/.config/nvim/user_custom.vim`, so your personnal modifications won't be overwritten in future updates.
 
-## Dependancies
+## Dependencies
 
 * nvim >= 3.8
 * python3
@@ -41,7 +41,7 @@ Optionals:
 
 ## Install intructions
 
-First make sure that you have all the necessary dependancies.
+First make sure that you have all the necessary dependencies.
 Then clone this repo and move and the files in the `nvim` directory at `~/.config/nvim/`.
 
 In future releases I expect to create an install script.

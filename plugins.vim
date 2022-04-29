@@ -5,7 +5,6 @@ Plug 'kylef/apiblueprint.vim'
 Plug 'ron-rs/ron.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'rust-lang/rust.vim'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -15,17 +14,13 @@ Plug 'janko/vim-test'
 "*****************************************************************************
 "" Navigation / Buffers
 "*****************************************************************************
-Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'vim-scripts/grep.vim'
-Plug 'kien/ctrlp.vim'
 Plug 'francoiscabrol/ranger.vim'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'majutsushi/tagbar'
 Plug 'mhinz/vim-startify'
-Plug 'junegunn/fzf'
 Plug 'tpope/vim-unimpaired'
+Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 
 "*****************************************************************************
 "" Editor and UI
