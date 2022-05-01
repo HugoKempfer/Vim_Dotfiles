@@ -1,14 +1,24 @@
 "*****************************************************************************
 "" Default colorscheme
 "*****************************************************************************
-colorscheme gruvbox
+"
+set termguicolors
 
-let g:gruvbox_contrast_light = "hard"
+let hour = strftime("%H")
+let isDay = 6 <= hour && hour < 18
+
+let g:one_allow_italics = 1
+
+if isDay
+	set background=light
+endif
+
+colorscheme one
 
 "*****************************************************************************
 "" Visual
 "*****************************************************************************
-set colorcolumn=80
+set colorcolumn=120
 highlight ColorColumn guibg=grey
 set autoindent
 set noexpandtab
@@ -34,16 +44,16 @@ let g:suckless_inc_height = 2      " height increment
 "" Lightline
 "*****************************************************************************
 let g:lightline = {
-						\ 'colorscheme': 'gruvbox',
-						\ 'active': {
-						\   'left': [ [ 'mode', 'paste' ],
-						\             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-						\ },
-						\ 'component_function': {
-						\   'cocstatus': 'coc#status',
-						\   'gitbranch': 'fugitive#head'
-						\ },
-						\ }
+			\ 'colorscheme': 'one',
+			\ 'active': {
+				\   'left': [ [ 'mode', 'paste' ],
+				\             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+				\ },
+				\ 'component_function': {
+					\   'cocstatus': 'coc#status',
+					\   'gitbranch': 'fugitive#head'
+					\ },
+					\ }
 
 "*****************************************************************************
 "" Haskell
@@ -62,14 +72,14 @@ let g:haskell_backpack = 1                " to enable highlighting of backpack k
 set hidden
 
 inoremap <silent><expr> <TAB>
-						\ pumvisible() ? "\<C-n>" :
-						\ <SID>check_back_space() ? "\<TAB>" :
-						\ coc#refresh()
+			\ pumvisible() ? "\<C-n>" :
+			\ <SID>check_back_space() ? "\<TAB>" :
+			\ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-		let col = col('.') - 1
-		return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <c-space> for trigger completion.
@@ -93,11 +103,11 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-		if &filetype == 'vim'
-				execute 'h '.expand('<cword>')
-		else
-				call CocAction('doHover')
-		endif
+	if &filetype == 'vim'
+		execute 'h '.expand('<cword>')
+	else
+		call CocAction('doHover')
+	endif
 endfunction
 
 " Highlight symbol under cursor on CursorHold
@@ -111,11 +121,11 @@ vmap <leader>F  <Plug>(coc-format-selected)
 nmap <leader>F  <Plug>(coc-format-selected)
 
 augroup mygroup
-		autocmd!
-		" Setup formatexpr specified filetype(s).
-		autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-		" Update signature help on jump placeholder
-		autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+	autocmd!
+	" Setup formatexpr specified filetype(s).
+	autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+	" Update signature help on jump placeholder
+	autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
@@ -169,8 +179,8 @@ let g:chromatica#enable_at_startup=1
 "*****************************************************************************
 "
 augroup rainbow
-		autocmd!
-		autocmd FileType c,cpp,rs,dart RainbowParentheses
+	autocmd!
+	autocmd FileType c,cpp,rs,dart RainbowParentheses
 augroup END
 
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
