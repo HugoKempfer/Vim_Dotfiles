@@ -51,7 +51,7 @@ let g:lightline = {
 				\ },
 				\ 'component_function': {
 					\   'cocstatus': 'coc#status',
-					\   'gitbranch': 'fugitive#head'
+					\   'gitbranch': 'FugitiveHead'
 					\ },
 					\ }
 
