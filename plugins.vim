@@ -25,6 +25,7 @@ Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 "*****************************************************************************
 "" Editor and UI
 "*****************************************************************************
+Plug 'vimpostor/vim-lumen'
 Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
 Plug 'tpope/vim-commentary'
