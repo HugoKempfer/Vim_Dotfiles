@@ -26,6 +26,12 @@ nnoremap <leader>ss :SaveSession<Space>
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
+" grep.vim
+nnoremap <silent> <leader>rg :Rg<CR>
+let Grep_Default_Options = '-IR'
+let Grep_Skip_Files = '*.log *.db *.o'
+let Grep_Skip_Dirs = '.git node_modules'
+
 "" Tabs
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
