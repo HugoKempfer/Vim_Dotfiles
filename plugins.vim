@@ -27,6 +27,7 @@ Plug 'lotabout/skim', { 'dir': '~/.skim', 'do': './install' }
 "*****************************************************************************
 Plug 'vimpostor/vim-lumen'
 Plug 'morhetz/gruvbox'
+Plug 'folke/tokyonight.nvim'
 Plug 'rakr/vim-one'
 Plug 'tpope/vim-commentary'
 Plug 'bronson/vim-trailing-whitespace'

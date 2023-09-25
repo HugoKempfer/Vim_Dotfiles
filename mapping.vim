@@ -2,6 +2,10 @@
 inoremap jk <esc>
 inoremap kj <esc>
 
+"" Use j/k to navigate un pum
+inoremap <expr><A-j> coc#pum#next(1)
+inoremap <expr><A-k> coc#pum#prev(1)
+
 "" Split
 noremap <Leader>h :<C-u>split<CR>
 noremap <Leader>v :<C-u>vsplit<CR>
@@ -87,7 +91,7 @@ nnoremap <silent> <leader><space> :noh<cr>
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-noremap <C-h> <C-w>h
+nnoremap <C-h> <C-w>h
 
 "" Vmap for maintain Visual Mode after shifting > and <
 vmap < <gv
@@ -115,10 +119,10 @@ tnoremap <A-h> <C-\><C-N><C-w>h
 tnoremap <A-j> <C-\><C-N><C-w>j
 tnoremap <A-k> <C-\><C-N><C-w>k
 tnoremap <A-l> <C-\><C-N><C-w>l
-inoremap <A-h> <C-\><C-N><C-w>h
-inoremap <A-j> <C-\><C-N><C-w>j
-inoremap <A-k> <C-\><C-N><C-w>k
-inoremap <A-l> <C-\><C-N><C-w>l
+" inoremap <A-h> <C-\><C-N><C-w>h
+" inoremap <A-j> <C-\><C-N><C-w>j
+" inoremap <A-k> <C-\><C-N><C-w>k
+" inoremap <A-l> <C-\><C-N><C-w>l
 nnoremap <A-h> <C-w>h
 nnoremap <A-j> <C-w>j
 nnoremap <A-k> <C-w>k
@@ -145,3 +149,4 @@ nmap <leader>F  <Plug>(coc-format-selected)
 " COC terminal
 "
 nnoremap <Leader>t :CocCommand terminal.Toggle<CR>
+
