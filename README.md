@@ -1,124 +1,87 @@
-# NVim dotfiles
+# Neovim Configuration (Lua)
 
-This is my personnal neovim config, feel free to override it!
+This repository provides a modern Neovim configuration with lazy-loaded plugins, dynamic theming, built-in LSP support via CoC, fuzzy finding, and a TUI file explorer. Written in Lua and managed by `folke/lazy.nvim`.
 
-# Screenshots
-![ C
-](https://i.imgur.com/h8i7aaP.png)
-![ Rust
-](https://i.imgur.com/h0c0HOA.png)
+---
 
-## Languages bindings
-I mostly work with a few languages and I adapted my config to work with :
- - C
- - C++
- - Rust
- - Dart
- - Typescript
+## Features
 
- I also plan to add support for others, so be on the lookout!
+* **Lazy-loaded plugins** with [`lazy.nvim`](https://github.com/folke/lazy.nvim)
+* **One Dark** theme with automatic light/dark switching based on macOS & GNOME settings
+* **Statusline** via [`lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim) using the `onedark` theme
+* **LSP & completion** powered by [`coc.nvim`](https://github.com/neoclide/coc.nvim) with preconfigured servers for Rust, Python, TypeScript, and Vue
+* **Fuzzy finding** and live grep via [`telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim) backed by \[ripgrep]
+* **File explorer** using [`yazi.nvim`](https://github.com/mikavilpas/yazi.nvim) with TUI interface from `snacks.nvim`
+* **Keybinding hints** overlay through [`which-key.nvim`](https://github.com/folke/which-key.nvim)
+* **Custom mappings** with `<Space>` leader for all CoC actions and Telescope commands
 
-## Add your custom config
+---
 
-You should'nt edit directly the config files. Instead you can create a file at `~/.config/nvim/user_custom.vim`, so your personnal modifications won't be overwritten in future updates.
+## Prerequisites
 
-## Dependencies
+* **Neovim** >= 0.8
+* **Node.js** (for `coc.nvim`)
+* **ripgrep** (for Telescope)
+* **gsettings** (on Linux) for theme detection
+* **Football** plugin manager (`lazy.nvim` bootstraps itself)
 
-* nvim >= 3.8
-* python3
-* pynvim: `pip install pynvim --user`
-* nodejs
-* yarn
-* git
-* curl
+---
 
-Optionals:
-* ranger
-* grammalecte
-* rls
-* cquery
-* dart_language_server
+## Installation
 
-## Install intructions
+1. Clone this repo to your Neovim config directory:
 
-First make sure that you have all the necessary dependencies.
-Then clone this repo and move and the files in the `nvim` directory at `~/.config/nvim/`.
+   ```sh
+   git clone <this-repo> ~/.config/nvim
+   ```
+2. Open Neovim:
 
-In future releases I expect to create an install script.
+   ```sh
+   nvim
+   ```
+3. `lazy.nvim` will auto-install missing plugins. On first start, CoC automatically installs the required language servers.
 
-## Controls and custom mappings
+---
 
-All the default controls of vim are unmodified except for the s/S substitue keys.
+## Key Mappings
 
-### Editor Layout and navigation
+| Mode          | Key         | Action                         |
+| ------------- | ----------- | ------------------------------ |
+| Normal        | `<Space>gd` | Go to definition               |
+| Normal        | `<Space>gr` | Show references                |
+| Normal        | `<Space>gi` | Go to implementation           |
+| Normal        | `<Space>rn` | Rename symbol                  |
+| Normal        | `<Space>ca` | Code actions                   |
+| Normal        | `<Space>dn` | Next diagnostic                |
+| Normal        | `<Space>dp` | Previous diagnostic            |
+| Normal        | `<Shift+K>` | Show hover documentation       |
+| Normal        | `<Space>ff` | Find files (Telescope)         |
+| Normal        | `<Space>fg` | Live grep (Telescope)          |
+| Normal        | `<Space>fb` | List buffers (Telescope)       |
+| Normal        | `<Space>fh` | Help tags (Telescope)          |
+| Normal/Visual | `<Space>-`  | Open Yazi at current file      |
+| Normal        | `<Space>cw` | Open Yazi in working directory |
+| Normal        | `<C-Up>`    | Resume last Yazi session       |
 
-* `Leader + .` Set the working directory at the current buffer
+---
 
-Layout:
-* `Leader + v` split vertically
-* `Leader + h` split horizontally
+## Configuration
 
-Navigation:
-* ``T or GT `` open a new tab
-* `Shift + Tab` go to next tab
-* `Ctrl + pageup or pagedown` navigate between tabs
+* **Theme detection**: Uses `gsettings` on Linux (GNOME) and `defaults` on macOS. Falls back to light mode.
+* **Statusline**: Handled by `lualine.nvim` with `onedark` theme.
+* **LSP/Completion**: `coc.nvim` with `Tab`/`Shift+Tab` navigation and `Enter` to confirm.
+* **Disable default mode**: `vim.opt.showmode = false` since lualine shows the current mode.
 
-* `Leader + c` close current buffer
+Customize plugin options, key mappings, or theme styles in `~/.config/nvim/init.lua` as needed.
 
-* `s + two first characters of a word` jump to a word downward cursor
-* `S + two first characters of a word` jump to a word upside cursor
+---
 
-The editor rely on a "tiling manager" like capacities :
+## Troubleshooting
 
-* `Ctrl + Alt + hjkl` resize current buffer
-* `Alt + Shift + hjkl`move current buffer
+* **No theme on lualine**: Ensure `navarasu/onedark.nvim` is installed and listed before `lualine.nvim`.
+* **Language servers not installed**: Run `:CocInstall coc-rust-analyzer coc-pyright coc-tsserver coc-volar` manually.
 
-### Language Server Protocol integration
+---
 
-All the LSP support comes from Intellisense (COC)
+Happy coding! 🚀
 
-* `Space + a`show all errors/warnings of the current project
-* `Leader + a + c`show quick actions for the symbol under cursor
-* `Leader + r + n` rename current symbol in the whole project
-* `Leader + F` format current buffer
-* `Leader + qf` quick fix
-* `gd` go to definition of the symbol under cursor
-* `gr` find all reference of the symbol under cursor
-* `gy`go to type definition
-* `gi`go to type implementation
-* `Space + s` open symbol list
-
-### Filesystem navigation
-
-* `Ctrl + p` open file fuzzy finder
-* `F3 or Ctrl + e` open filesystem tree
-* `Leader + f` open ranger file finder (needs ranger as dependancy)
-* `Leader + e` open fzf fuzzy finder
-
-### Git integration
-
-* `Leader +  ga `Git add
-* `Leader +  gc `Git commit
-* `Leader +  gsh` Git push
-* `Leader +  gll` Git pull
-* `Leader +  gs `Git status
-* `Leader +  gb `Git blame
-* `Leader +  gd `Git diff
-* `Leader +  gr `Git remove
-
-### Code editing
-
-* `<` indent selection on the left
-* `>` indent selection on the right
-
-### Other integrations
-
-Grammalecte (french grammar corrector)
-
-* `Leader + gc` grammalecte check
-* `Leader + gcc` grammalecte clear
-
-Terminal and Shell
-
-* `Leader + t + m` open terminal in current buffer
-* `Leader + s + h` open vim shell in current buffer
