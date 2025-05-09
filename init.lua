@@ -69,11 +69,6 @@ require('lazy').setup({
     branch = 'release',
     event = 'BufReadPre',
     config = function()
-      vim.cmd [[
-        autocmd VimEnter * ++once
-          \ silent! CocInstall -sync coc-rust-analyzer coc-pyright coc-tsserver coc-volar|q
-      ]]
-
       -- Use Tab and Shift-Tab for completion navigation and Enter to confirm
       vim.api.nvim_set_keymap('i', '<Tab>',
         'coc#pum#visible() ? coc#pum#next(1) : coc#refresh()',
