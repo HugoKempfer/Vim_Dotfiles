@@ -135,25 +135,32 @@ require('lazy').setup({
 
       -- Diagnostics presentation
       vim.diagnostic.config {
-        virtual_text = true,
+        virtual_text = { current_line = true },  -- only show on the cursor line (less noise)
+        signs = true,
+        underline = true,
         severity_sort = true,
-        float = { border = 'rounded' },
+        float = { border = 'rounded', source = true },
       }
 
       -- Buffer-local mappings on attach (mirrors the old coc bindings)
       vim.api.nvim_create_autocmd('LspAttach', {
         callback = function(args)
+          local tb = require('telescope.builtin')
           local function map(lhs, rhs, desc)
             vim.keymap.set('n', lhs, rhs, { buffer = args.buf, silent = true, desc = desc })
           end
-          -- Goto (g-prefix, mirroring Vim's built-in goto motions)
-          map('gd', vim.lsp.buf.definition, 'Goto definition')
-          map('gr', vim.lsp.buf.references, 'Goto references')
-          map('gI', vim.lsp.buf.implementation, 'Goto implementation')
+          -- Goto (g-prefix, mirroring Vim's built-in goto motions; routed through Telescope)
+          map('gd', tb.lsp_definitions, 'Goto definition')
+          map('gr', tb.lsp_references, 'Goto references')
+          map('gI', tb.lsp_implementations, 'Goto implementation')
+          map('gy', tb.lsp_type_definitions, 'Goto type definition')
           map('K', vim.lsp.buf.hover, 'Hover docs')
           -- Code (<leader>c)
           map('<leader>cr', vim.lsp.buf.rename, 'Rename')
           map('<leader>ca', vim.lsp.buf.code_action, 'Code action')
+          map('<leader>cs', tb.lsp_document_symbols, 'Document symbols')
+          map('<leader>cS', tb.lsp_dynamic_workspace_symbols, 'Workspace symbols')
+          map('<leader>cl', '<cmd>checkhealth vim.lsp<cr>', 'LSP status/health')
           -- Diagnostics (]/[ to jump, <leader>c for the rest)
           map(']d', function() vim.diagnostic.jump({ count = 1 }) end, 'Next diagnostic')
           map('[d', function() vim.diagnostic.jump({ count = -1 }) end, 'Prev diagnostic')
@@ -235,6 +242,42 @@ require('lazy').setup({
     end,
   },
 
+  -- treesitter: better syntax, indentation, and symbol parsing
+  {
+    'nvim-treesitter/nvim-treesitter',
+    branch = 'master',
+    build = ':TSUpdate',
+    event = { 'BufReadPost', 'BufNewFile' },
+    config = function()
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = { 'lua', 'vim', 'vimdoc', 'bash', 'markdown', 'markdown_inline' },
+        auto_install = true,
+        highlight = { enable = true },
+        indent = { enable = true },
+      }
+    end,
+  },
+
+  -- LSP progress notifications (clearly shows servers indexing/loading/done)
+  {
+    'j-hui/fidget.nvim',
+    event = 'LspAttach',
+    opts = {},
+  },
+
+  -- diagnostics / references / symbols list with easy navigation
+  {
+    'folke/trouble.nvim',
+    cmd = 'Trouble',
+    keys = {
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>',                 desc = 'Diagnostics (Trouble)' },
+      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>',    desc = 'Buffer diagnostics' },
+      { '<leader>xs', '<cmd>Trouble symbols toggle<cr>',                     desc = 'Symbols (Trouble)' },
+      { '<leader>xq', '<cmd>Trouble qflist toggle<cr>',                      desc = 'Quickfix (Trouble)' },
+    },
+    opts = {},
+  },
+
   -- auto-close brackets, parens, and quotes
   {
     'windwp/nvim-autopairs',
@@ -254,6 +297,7 @@ require('lazy').setup({
       wk.add {
         { '<leader>c', group = 'Code' },
         { '<leader>f', group = 'Find' },
+        { '<leader>x', group = 'Trouble' },
         { '<leader>e', desc = 'Explorer (current file)' },
         { '<leader>E', desc = 'Explorer (cwd)' },
       }
