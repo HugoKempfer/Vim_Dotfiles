@@ -243,18 +243,36 @@ require('lazy').setup({
   },
 
   -- treesitter: better syntax, indentation, and symbol parsing
+  -- NOTE: uses the `main` branch. The old `master` branch is frozen and does
+  -- not support Neovim 0.12+ (it throws "attempt to call method 'range'").
+  -- `main` is module-less: install parsers explicitly, then enable highlight/
+  -- indent per-buffer via `vim.treesitter.start()` in a FileType autocmd.
   {
     'nvim-treesitter/nvim-treesitter',
-    branch = 'master',
+    branch = 'main',
+    lazy = false,
     build = ':TSUpdate',
-    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = { 'lua', 'vim', 'vimdoc', 'bash', 'markdown', 'markdown_inline' },
-        auto_install = true,
-        highlight = { enable = true },
-        indent = { enable = true },
-      }
+      -- Building parsers on `main` needs the tree-sitter CLI. Skip the install
+      -- (and its error spam) until it's on PATH; bundled parsers still work.
+      if vim.fn.executable('tree-sitter') == 1 then
+        require('nvim-treesitter').install {
+          'lua', 'vim', 'vimdoc', 'bash', 'markdown', 'markdown_inline',
+          'rust', 'toml', 'just', 'gitignore',
+        }
+      end
+
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function(args)
+          local buf = args.buf
+          local lang = vim.treesitter.language.get_lang(vim.bo[buf].filetype)
+          if not lang then return end
+          -- Only start if a parser is actually available for this language
+          -- (skips silently while async installs are still finishing).
+          if not pcall(vim.treesitter.start, buf, lang) then return end
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
     end,
   },
 
