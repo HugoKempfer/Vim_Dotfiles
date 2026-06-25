@@ -296,6 +296,89 @@ require('lazy').setup({
     opts = {},
   },
 
+  -- git decorations in the sign column + hunk staging/navigation
+  {
+    'lewis6991/gitsigns.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      on_attach = function(bufnr)
+        local gs = require('gitsigns')
+        local function map(mode, lhs, rhs, desc)
+          vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+        end
+
+        -- Hunk navigation (]c/[c, mirroring Vim's diff-mode change motions).
+        -- Fall back to the built-in motion when inside a diff.
+        map('n', ']c', function()
+          if vim.wo.diff then return ']c' end
+          vim.schedule(function() gs.nav_hunk('next') end)
+          return '<Ignore>'
+        end, 'Next hunk')
+        map('n', '[c', function()
+          if vim.wo.diff then return '[c' end
+          vim.schedule(function() gs.nav_hunk('prev') end)
+          return '<Ignore>'
+        end, 'Prev hunk')
+
+        -- Git actions (<leader>g)
+        map('n', '<leader>gs', gs.stage_hunk, 'Stage hunk')
+        map('n', '<leader>gr', gs.reset_hunk, 'Reset hunk')
+        map('v', '<leader>gs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end, 'Stage hunk')
+        map('v', '<leader>gr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end, 'Reset hunk')
+        map('n', '<leader>gS', gs.stage_buffer, 'Stage buffer')
+        map('n', '<leader>gR', gs.reset_buffer, 'Reset buffer')
+        map('n', '<leader>gp', gs.preview_hunk, 'Preview hunk')
+        map('n', '<leader>gb', function() gs.blame_line { full = true } end, 'Blame line')
+        map('n', '<leader>gB', gs.toggle_current_line_blame, 'Toggle line blame')
+        map('n', '<leader>gd', gs.diffthis, 'Diff this')
+
+        -- Hunk text object (e.g. `dih`, `vih`)
+        map({ 'o', 'x' }, 'ih', gs.select_hunk, 'Select hunk')
+      end,
+    },
+  },
+
+  -- snacks: lazygit launcher (the lazygit binary lives on PATH already)
+  {
+    'folke/snacks.nvim',
+    lazy = false,
+    opts = {
+      lazygit = { enabled = true },
+    },
+    keys = {
+      { '<leader>gg', function() require('snacks').lazygit() end,      desc = 'Lazygit' },
+      { '<leader>gf', function() require('snacks').lazygit.log_file() end, desc = 'Lazygit file history' },
+    },
+  },
+
+  -- fugitive: full git porcelain (status buffer, commit, diffsplit, push/pull)
+  {
+    'tpope/vim-fugitive',
+    cmd = { 'Git', 'G', 'Gdiffsplit', 'Gvdiffsplit', 'Gread', 'Gwrite', 'Gedit', 'Glog' },
+    keys = {
+      { '<leader>gG', '<cmd>Git<cr>',          desc = 'Git status (fugitive)' },
+      { '<leader>gc', '<cmd>Git commit<cr>',   desc = 'Git commit' },
+      { '<leader>gP', '<cmd>Git push<cr>',     desc = 'Git push' },
+      { '<leader>gL', '<cmd>Git pull<cr>',     desc = 'Git pull' },
+      { '<leader>gD', '<cmd>Gvdiffsplit<cr>',  desc = 'Git diff split' },
+      -- Walk every file changed on this branch vs the default branch (merge-base diff).
+      { '<leader>gv', function()
+        -- Prefer the remote's default branch (origin/main, origin/master, ...);
+        -- fall back to a local main/master, then to plain 'master'.
+        local function default_branch()
+          local ref = vim.fn.systemlist('git symbolic-ref --quiet --short refs/remotes/origin/HEAD')[1]
+          if vim.v.shell_error == 0 and ref and ref ~= '' then return ref end
+          for _, b in ipairs { 'main', 'master' } do
+            vim.fn.system('git rev-parse --verify --quiet ' .. b)
+            if vim.v.shell_error == 0 then return b end
+          end
+          return 'master'
+        end
+        vim.cmd('Git difftool -y ' .. default_branch() .. '...HEAD')
+      end, desc = 'Review branch vs default' },
+    },
+  },
+
   -- auto-close brackets, parens, and quotes
   {
     'windwp/nvim-autopairs',
@@ -315,6 +398,7 @@ require('lazy').setup({
       wk.add {
         { '<leader>c', group = 'Code' },
         { '<leader>f', group = 'Find' },
+        { '<leader>g', group = 'Git' },
         { '<leader>x', group = 'Trouble' },
         { '<leader>e', desc = 'Explorer (current file)' },
         { '<leader>E', desc = 'Explorer (cwd)' },
